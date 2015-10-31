@@ -9,8 +9,11 @@ To open the presentation, just clone the repository and open the presentation:
 
 ```
 > git clone https://github.com/bifurcation/letsencrypt-overview.git
-> open index-en.html
+> open index.html
 ```
+
+If you want to use the default English version, you can view it [through Github
+pages](http://bifurcation.github.io/letsencrypt-overview).
 
 If you're presenting in a language other than English, it would be great if you
 could contribute your translation of this presentation.  Just change
