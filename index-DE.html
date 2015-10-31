@@ -3,7 +3,8 @@
 <!-- 
    ***************
    * GERMAN Translation by
-   * Marco Götze
+   * Marco Götze   
+   * twitter @solariz
    * https://github.com/solariz
    * https://solariz.de
    ***************
@@ -11,7 +12,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Let's Encrypt - Overview</title>
+		<title>Let's Encrypt - Übersicht</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -50,7 +51,7 @@
         <section>
           <h2>Welche Probleme versuchen wir zu lösen?</h2>
           <ul>
-            <li>HTTPS Verbreitung im Internet noch zu gering
+            <li>Die HTTPS Verbreitung im Internet ist noch zu gering
               <ul>
                 <li><a href="http://mzl.la/1LG5eZp">~30% aller Seitenaufrufe</a></li>
                 <li><a href="http://mzl.la/1LG5cAy">~64% aller HTTP Transaktionen</a></li>
@@ -74,8 +75,8 @@
           <h2>... aber ein Zertifikat zu erhalten ist schwierig</h2>
           <ul>
             <li>Manueller Prozess, unterschiedlich bei jedem Anbieter</li>
-            <li>Als erstes muss sich für Zertifikat beworben werden...</li>
-            <li>... dann folgt die komplizierte Installation</li>
+            <li>Als erstes muss sich für Zertifikate beworben werden...</li>
+            <li>... dann folgt die oft komplizierte Installation</li>
             <li>Können wir das alles nicht einfach automatisieren?</li>
           </ul>
         </section>
@@ -96,7 +97,7 @@
             <h2>Ein <u>automatisches</u> CA</h2>
             <ul>
               <li>Die meiste Arbeit der Zertifizierung ist das Verifizieren der Domain Eigentümer</li>
-              <li>Let's Encrypt nutzt ein <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">Standart Protokoll</a> um die Kontrolle über eine Domain automatisch zu verifizieren</li>
+              <li>Let's Encrypt nutzt ein <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">Standard Protokoll</a> um die Kontrolle über eine Domain automatisch zu verifizieren</li>
             </ul>
           </section>
           
@@ -104,14 +105,14 @@
             <h2><small>Automatische Zert. Management Umgebung</small></h2>
             <h3><i>Automated Certificate Management Environment (ACME)</i></h3>
             <ul>
-              <li>Angenommen jemand fragt ein Zertifikat für <b>example.com</b> an</li>
+              <li>Angenommen jemand möchte ein Zertifikat für <b>example.com</b></li>
               <li>Wie stellt man sicher das er auch im Besitz von <b>example.com</b> ist?</li>
             </ul>
           </section>
           
           <section>
             <h2>Domain Validierung</h2>
-            <p>Gib ihm eine Aufgabe die nur der Domain Eigentümer lösen kann:</p>
+            <p>Eine Aufgabe stellen die nur der Domain Eigentümer lösen kann:</p>
             <ul>
               <li>Einen DNS Eintrag für <br/><b>_acme-challenge.example.com</b> anlegen</li>
               <li>Eine Datei unter <br/><b>http://example.com/.well-known/acme-challenge/</b> bereitstellen</li>
@@ -124,13 +125,13 @@
             <ul>
               <li>Der gesamte Prozess ist in der <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME Spezifikation</a> beschrieben
               <ul>
-                <li>Wie um Autohrisation fragen</li>
+                <li>Wie um Autorisation fragen</li>
                 <li>Wie sollen die Aufgaben erfüllt werden</li>
                 <li>Wie soll nach dem Zertifikat gefragt werden</li>
               </ul>
               </li>
-              <li>Ein standart Protocol ist die Grundlage für Tools</li>
-              <li>Die Vision von ACME ist die Integration in Webserver um künftig HTTPS automatisch bereitzustellen</li>
+              <li>Ein standart Protokoll ist die Grundlage für das erstellen von Tools</li>
+              <li>Die Vision von ACME ist die künftig Integration in Webserver um HTTPS automatisch bereitzustellen</li>
             </ul>
           </section>
         </section>
@@ -145,7 +146,7 @@
           <p>Alles an Let's Encrypt ist Open-source:</p>
           <ul>
             <li>Die Software der <a href="https://github.com/letsencrypt/boulder/">Zertifikatstelle</a></li>
-            <li>Die Software zur <a href="https://github.com/letsencrypt/letsencrypt/">Erstellung eines Zertifikat</a></li>
+            <li>Die Software zur <a href="https://github.com/letsencrypt/letsencrypt/">Erstellung eines Zertifikates</a></li>
             <li>Ebenso <a href="https://github.com/bifurcation/letsencrypt-overview/">diese Präsentation</a>!</li>
           </ul>
           <p><br></p>
@@ -163,8 +164,8 @@
         <section>
           <h2>Nur der Anfang...</h2>
           <ul>
-            <li>Let's Encrypt wird derzeit vertraut untergeordnet zu einer bestehenden CA</li>
-            <li>Eine Bewerbung für ein "Browser Trust" wurde eingereicht</li>
+            <li>Let's Encrypt wird derzeit über die Untergeordnung einer bestehenden CA vertraut</li>
+            <li>Eine Bewerbung für einen "Browser Trust" wurde eingereicht</li>
             <li>Ein echtes Zertifikat steht auf der <a href="https://helloworld.letsencrypt.org/">demo Seite</a> zur Ansicht</li>
             <li>... oder direkt für das <a href="https://docs.google.com/forms/d/15Ucm4A20y2rf9gySCTXD6yoLG6Tba7AwYgglV7CKHmM/viewform?c=0&w=1">Beta Programm</a> anmelden</li>
             <li>Allgemeine Verfügbarkeit Ende 2015</li>
