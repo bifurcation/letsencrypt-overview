@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh">
+<!-- 
+   ***************
+   * Chinese Translation by
+   * Ma Lu  马露 lu@mgz.de
+   * https://github.com/solariz
+   * https://solariz.de
+   ***************
+-->
+	<head>
+		<meta charset="utf-8">
+
+		<title>Let's Encrypt - Overview</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="./reveal/css/reveal.css">
+		<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal/css/print/pdf.css'
+                                                                : './reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="./reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+        <section>
+          <h2>我们正在解决什么样的问题?</h2>
+          <ul>
+            <li>英特网上的HTTPS不够充足
+              <ul>
+                <li><a href="http://mzl.la/1LG5eZp">~30% 的网页下载</a></li>
+                <li><a href="http://mzl.la/1LG5cAy">~64% 的HTTP交易</a></li>
+              </ul>
+            </li>
+            <li>这个数字应该是100%</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>英特网的安全是重要的...</h2>
+          <ul>
+            <li><b>保密性:</b> 防止<a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">网络间谍的侵入</a> </li>
+            <li><b>私密性:</b> 防止<a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">cookie跟踪系统的侵入</a> </li>
+            <li><b>统一性:</b> 防止<a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">广告的侵入</a> </li>
+            <li><b>真实性:</b> 保证你与真正的网站对话而不是 <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">部分DDoS</a> </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>... 但是得到一张证书是不容易的</h2>
+          <ul>
+            <li>手工程序取决于不同的供应商</li>
+            <li>首先你需要申请证书...</li>
+            <li>... 然后你必须解决如何安装它</li>
+            <li>我们能不能让这一过程变得自动化呢?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>授权一张新的证书</h2>
+          <ul>
+            <li>免费</li>
+            <li>自动化</li>
+            <li>透明化</li>
+            <li>公开化</li>
+            <li>合作化</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>一张 <u>自动化</u> CA</h2>
+            <ul>
+              <li>颁发这张证书的大部分工作是关于确认和保证英特网域名的拥有者的身份</li>
+              <li>Let's Encrypt 使用一张 <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">标准化的协议</a> 自动确认英特网域名拥有者的身份</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>自动化证书的管理环境<br/><small>Automated Certificate Management Environment (ACME)</small></h2>
+            <ul>
+              <li>假设有人要求拥有一张证书，如<b>example.com</b></li>
+              <li>你如何知道他们是否真正拥有它了呢 <b>example.com</b>?</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>域名的验证</h2>
+            <p>给域名拥有者一个挑战，这个挑战只有他能够完成，比如:</p>
+            <ul>
+              <li>提供一个DNS输入 <br/><b>_acme-challenge.example.com</b></li>
+              <li>提供一个文件 <br/><b>http://example.com/.well-known/acme-challenge/</b> </li>
+              <li>提供TLS服务器 <b>example.com</b> </li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>自动化的验证</h2>
+            <ul>
+              <li>整个过程在<a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME 说明书</a>中被解释 
+              <ul>
+                <li>你如何要求授权</li>
+                <li>你如何完成挑战</li>
+                <li>你如何申请证书</li>
+              </ul>
+              </li>
+              <li>拥有一张标准的协议书意味着你可以建立自动化验证的工具</li>
+              <li>ACME的未来前景是将以上过程建入网站服务器，使其自动生成HTTPS</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h2>一个 <u>透明化的</u> CA</h2>
+          <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">所有的证书</a> <a href="https://www.certificate-transparency.org/">通过证书透明化系统</a> 被公开地登入协议</p>
+        </section>
+
+        <section>
+          <h2>一张 <u>公开化的</u> CA</h2>
+          <p>Let's Encrypt使用开放源码软件:</p>
+          <ul>
+            <li>软件掌控 <a href="https://github.com/letsencrypt/boulder/">证书的权威性</a></li>
+            <li>你可以通过软件 <a href="https://github.com/letsencrypt/letsencrypt/">得到一张证书</a></li>
+            <li>甚至 <a href="https://github.com/bifurcation/letsencrypt-overview/">这个文件的介绍</a>!</li>
+          </ul>
+          <p><br></p>
+          <h2>欢迎加入和合作!</h2>
+        </section>
+
+        <section>
+          <h2>一张 <u>合作化的</u> CA</h2>
+          <ul>
+            <li>Let's Encrypt的ACME协议正在通过 <a href="https://tools.ietf.org/wg/acme/">IETF</a> 被标准化，因此所有的证书授权都可以使用它</li>
+            <li><a href="https://community.letsencrypt.org/">一个开放性的平台支持系统</a> 正在提供服务，帮助使用者</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>只是刚刚开始...</h2>
+          <ul>
+            <li>Let's Encrypt当下是CA授权机构的所信任的下属机构</li>
+            <li>Let's Encrypt已申请被浏览者认可的可信赖的机构</li>
+            <li>你可以看到一张真实的<a href="https://helloworld.letsencrypt.org/">demo 网站的</a>证书</li>
+            <li>... 或者申请登入<a href="https://docs.google.com/forms/d/15Ucm4A20y2rf9gySCTXD6yoLG6Tba7AwYgglV7CKHmM/viewform?c=0&w=1">Beta程序</a> </li>
+            <li>大致规划于2015年面世</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="./img/verifiedby.png"/>
+        </section>
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="./reveal/lib/js/head.min.js"></script>
+		<script src="./reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+			});
+
+      document.body.onclick = function() {
+        document.body.mozRequestFullScreen();
+      }
+
+		</script>
+
+	</body>
+</html>

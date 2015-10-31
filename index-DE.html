@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="de">
+<!-- 
+   ***************
+   * GERMAN Translation by
+   * Marco Götze   
+   * twitter @solariz
+   * https://github.com/solariz
+   * https://solariz.de
+   ***************
+-->
+	<head>
+		<meta charset="utf-8">
+
+		<title>Let's Encrypt - Übersicht</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="./reveal/css/reveal.css">
+		<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal/css/print/pdf.css'
+                                                                : './reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="./reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+        <section>
+          <h2>Welche Probleme versuchen wir zu lösen?</h2>
+          <ul>
+            <li>Die HTTPS Verbreitung im Internet ist noch zu gering
+              <ul>
+                <li><a href="http://mzl.la/1LG5eZp">~30% aller Seitenaufrufe</a></li>
+                <li><a href="http://mzl.la/1LG5cAy">~64% aller HTTP Transaktionen</a></li>
+              </ul>
+            </li>
+            <li>Diese Zahlen sollten bei 100% liegen</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sicherheit ist wichtig...</h2>
+          <ul>
+            <li><b>Vertraulichkeit:</b> <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">Spionage</a> verhindern</li>
+            <li><b>Privacy:</b> <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">eingeschleuste Tracking Cookies</a> verhindern</li>
+            <li><b>Integrität:</b> <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">eingeschleuste Werbung</a> verhindern</li>
+            <li><b>Authentizität:</b> Die Kommunikation zur echten Seite sicherstellen und <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">unfreiwillige Teilnahme an DDoS</a> ausschließen</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>... aber ein Zertifikat zu erhalten ist schwierig</h2>
+          <ul>
+            <li>Manueller Prozess, unterschiedlich bei jedem Anbieter</li>
+            <li>Als erstes muss sich für Zertifikate beworben werden...</li>
+            <li>... dann folgt die oft komplizierte Installation</li>
+            <li>Können wir das alles nicht einfach automatisieren?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Eine neue Zertifizierungsstelle</h2>
+          <ul>
+            <li>Kostenlos</li>
+            <li>Automatisiert</li>
+            <li>Transparent</li>
+            <li>Offen</li>
+            <li>Kooperativ</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>Ein <u>automatisches</u> CA</h2>
+            <ul>
+              <li>Die meiste Arbeit der Zertifizierung ist das Verifizieren der Domain Eigentümer</li>
+              <li>Let's Encrypt nutzt ein <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">Standard Protokoll</a> um die Kontrolle über eine Domain automatisch zu verifizieren</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2><small>Automatische Zert. Management Umgebung</small></h2>
+            <h3><i>Automated Certificate Management Environment (ACME)</i></h3>
+            <ul>
+              <li>Angenommen jemand möchte ein Zertifikat für <b>example.com</b></li>
+              <li>Wie stellt man sicher das er auch im Besitz von <b>example.com</b> ist?</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>Domain Validierung</h2>
+            <p>Eine Aufgabe stellen die nur der Domain Eigentümer lösen kann:</p>
+            <ul>
+              <li>Einen DNS Eintrag für <br/><b>_acme-challenge.example.com</b> anlegen</li>
+              <li>Eine Datei unter <br/><b>http://example.com/.well-known/acme-challenge/</b> bereitstellen</li>
+              <li>Einen TLS Server auf <b>example.com</b> einrichten</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>Automatisierte Validierung</h2>
+            <ul>
+              <li>Der gesamte Prozess ist in der <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME Spezifikation</a> beschrieben
+              <ul>
+                <li>Wie um Autorisation fragen</li>
+                <li>Wie sollen die Aufgaben erfüllt werden</li>
+                <li>Wie soll nach dem Zertifikat gefragt werden</li>
+              </ul>
+              </li>
+              <li>Ein standart Protokoll ist die Grundlage für das erstellen von Tools</li>
+              <li>Die Vision von ACME ist die künftig Integration in Webserver um HTTPS automatisch bereitzustellen</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h2>Ein <u>transparentes</u> CA</h2>
+          <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">Alle Zertifikate</a> sind öffentlich durch das <a href="https://www.certificate-transparency.org/">Zert. Transparenz System</a> protokolliert</p>
+        </section>
+
+        <section>
+          <h2>Ein <u>Offenes</u> CA</h2>
+          <p>Alles an Let's Encrypt ist Open-source:</p>
+          <ul>
+            <li>Die Software der <a href="https://github.com/letsencrypt/boulder/">Zertifikatstelle</a></li>
+            <li>Die Software zur <a href="https://github.com/letsencrypt/letsencrypt/">Erstellung eines Zertifikates</a></li>
+            <li>Ebenso <a href="https://github.com/bifurcation/letsencrypt-overview/">diese Präsentation</a>!</li>
+          </ul>
+          <p><br></p>
+          <h2>"Pull requests" sind Wilkommen!</h2>
+        </section>
+
+        <section>
+          <h2>Eine <u>Kooperative</u> CA</h2>
+          <ul>
+            <li>Das durch Let's Encrypt benutzte ACME Protokoll wird durch die <a href="https://tools.ietf.org/wg/acme/">IETF standardisiert</a> so das es von allen CAs verwendet werden kann</li>
+            <li>Hilfe durch Anwender wird durch ein <a href="https://community.letsencrypt.org/">Community Support System</a> angeboten</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Nur der Anfang...</h2>
+          <ul>
+            <li>Let's Encrypt wird derzeit über die Untergeordnung einer bestehenden CA vertraut</li>
+            <li>Eine Bewerbung für einen "Browser Trust" wurde eingereicht</li>
+            <li>Ein echtes Zertifikat steht auf der <a href="https://helloworld.letsencrypt.org/">demo Seite</a> zur Ansicht</li>
+            <li>... oder direkt für das <a href="https://docs.google.com/forms/d/15Ucm4A20y2rf9gySCTXD6yoLG6Tba7AwYgglV7CKHmM/viewform?c=0&w=1">Beta Programm</a> anmelden</li>
+            <li>Allgemeine Verfügbarkeit Ende 2015</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="./img/verifiedby.png"/>
+        </section>
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="./reveal/lib/js/head.min.js"></script>
+		<script src="./reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+			});
+
+      document.body.onclick = function() {
+        document.body.mozRequestFullScreen();
+      }
+
+		</script>
+
+	</body>
+</html>
