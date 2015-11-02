@@ -1,4 +1,4 @@
-Let's Enrypt Overview
+Let's Encrypt Overview
 =====================
 
 This repository contains a basic presentation about Let's Encrypt, built using
