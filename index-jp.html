@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Let's Encryptについて</title>
+		<!-- <title>Let's Encrypt - Overview</title> -->
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="./reveal/css/reveal.css">
+		<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal/css/print/pdf.css'
+                                                                : './reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="./reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+        <section>
+					<h2>何が問題か？</h2>
+					<!-- <h2>What problem are we trying to solve?</h2> -->
+          <ul>
+            <li>インターネットでのHTTPSの利用はまだまだ不十分
+						<!-- <li>Not enough HTTPS on the Internet -->
+              <ul>
+                <li><a href="http://mzl.la/1LG5eZp">ページ読み込みにおいて30%以下</a></li>
+								<!-- <li><a href="http://mzl.la/1LG5eZp">~30% of pageloads</a></li> -->
+								<li><a href="http://mzl.la/1LG5cAy">HTTPトランザクションにおいて64%以下</a></li>
+                <!-- <li><a href="http://mzl.la/1LG5cAy">~64% of HTTP transactions</a></li> -->
+              </ul>
+            </li>
+            <li>いずれの2つの数字も100%であるべき</li>
+						<!-- <li>These numbers should be 100%</li> -->
+          </ul>
+        </section>
+
+        <section>
+          <h2>セキュリティの重要性</h2>
+					<!-- <h2>Security is important...</h2> -->
+          <ul>
+            <li><b>機密性:</b> あなたか何をしているかを <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">誰かに除かれる</a>ことを防ぎます</li>
+            <!-- <li><b>Confidentiality:</b> Prevent <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">spying</a> on what you're doing.</li> -->
+						<li><b>プライバシー:</b> <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">追跡可能なCookieの挿入</a>を防ぎます</li>
+            <!-- <li><b>Privacy:</b> Prevent <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">injected tracking cookies</a></li> -->
+						<li><b>完全性:</b> <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">広告が挿入されるの</a>を防ぎます</li>
+            <!-- <li><b>Integrity:</b> Prevent <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">injected advertising</a></li> -->
+            <li><b>真正性:</b> 本物のWebサイトに確実に接続されていることを確認し、<a href="https://citizenlab.org/2015/04/chinas-great-cannon/">part of a DDoS</a>攻撃に荷担しないようにします</li>
+						<!-- <li><b>Authenticity:</b> Ensure you're talking to the real site and not <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">part of a DDoS</a></li> -->
+          </ul>
+        </section>
+
+        <section>
+					<h2>... しかし証明書を入手することは簡単ではない</h2>
+					<!-- <h2>... but getting a certificate is hard</h2> -->
+          <ul>
+						<li>証明書プロバイダー毎に異なる自動化されていないプロセス</li>
+            <li>最初に証明書発行を申し込まなければならず...</li>
+            <li>... そしてその後どうやってインストールするか調べないといけない</li>
+            <li>すべてを自動で行いたくないですか</li>
+						<!-- <li>Manual process, different for every provider</li>
+            <li>First you have to apply for the certificate...</li>
+            <li>... then you have to figure out how to install it</li>
+            <li>Can't we just automate all of this?</li> -->
+          </ul>
+        </section>
+
+        <section>
+          <h2>新しい証明機関</h2>
+					<!-- <h2>A new certificate authority</h2> -->
+          <ul>
+            <li>無料で</li>
+            <li>自動化された</li>
+            <li>透明性が確保され</li>
+            <li>オープンで</li>
+            <li>協調的な</li>
+						<!-- <li>Free</li>
+						<li>Automated</li>
+						<li>Transparent</li>
+						<li>Open</li>
+						<li>Cooperative</li> -->
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2><u>自動化された</u>証明機関</h2>
+						<!-- <h2>An <u>Automated</u> CA</h2> -->
+            <ul>
+							<li>証明書を発行する際の大部分のタスクはドメインの検証です</li>
+              <li>Let's Encryptはドメインの検証を自動的に行う<a href="https://tools.ietf.org/html/draft-ietf-acme-acme">標準プロトコル</a>を使います</li>
+							<!-- <li>Most of the work in issuing a certificate is in verifying domain control</li>
+							<li>Let's Encrypt uses a <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">standard protocol</a> to verify domain control automatically</li> -->
+            </ul>
+          </section>
+
+          <section>
+            <h2>Automated Certificate Management Environment (ACME)</h2>
+						<!-- <h2>Automated Certificate Management Environment (ACME)</h2> -->
+            <ul>
+							<li>もし誰かが<b>example.com</b>の証明書を要求したとして、</li>
+              <li>どうやって<b>example.com</b>を実際に所有しているか確認したらよいでしょう?</li>
+							<!-- <li>Suppose someone asks for a certificate for <b>example.com</b></li>
+							<li>How do you know they actually own <b>example.com</b>?</li> -->
+            </ul>
+          </section>
+
+          <section>
+            <h2>ドメインの検証</h2>
+						<!-- <h2>Domain Validation</h2> -->
+            <p>ドメインの所有者のみ可能な以下の方法を使って検証します:</p>
+						<!-- <p>Give them a challenge that only the domain owner can complete:</p> -->
+            <ul>
+              <li>DNSレコードを設定する<br/><b>_acme-challenge.example.com</b></li>
+              <li>ファイルを設定する<br/><b>http://example.com/.well-known/acme-challenge/</b></li>
+              <li><b>example.com</b>上にTLSサーバを構築する</li>
+							<!-- <li>Provision a DNS record for <br/><b>_acme-challenge.example.com</b></li>
+              <li>Provision a file at <br/><b>http://example.com/.well-known/acme-challenge/</b></li>
+              <li>Configure a TLS server on <b>example.com</b></li> -->
+            </ul>
+          </section>
+
+          <section>
+            <h2>自動検証</h2>
+						<!-- <h2>Automated Validation</h2> -->
+            <ul>
+              <li>すべてのプロセスは<a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME標準</a>に記載されています。
+              <!-- <li>The whole process is laid out in the <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME specification</a> -->
+              <ul>
+                <li>どうやって委任を設定するか</li>
+                <li>どうやって検証するか</li>
+                <li>どうやって証明書を要求するか</li>
+								<!-- <li>How you ask for authorization</li>
+								<li>How you fulfill challenges</li>
+								<li>How you ask for certificates</li> -->
+              </ul>
+              </li>
+              <li>標準プロトコルを使うと言うことは自分でツールを作ることが出来ることを意味します。</li>
+              <li>ACMEのビジョンはWebサーバに組み込まれ、HTTPSを自動構成することです</li>
+							<!-- <li>Having a standard protocol means that you can build tools</li>
+							<li>The vision is for ACME to be built into web servers, to auto-configure HTTPS</li> -->
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h2><u>透明性のある</u>CA</h2>
+					<!-- <h2>A <u>Transparent</u> CA</h2> -->
+          <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">すべての証明書</a>の発行ログは<a href="https://www.certificate-transparency.org/">Certificate Transparency</a>システムを通じてすべて誰でもアクセス可能です。</p>
+          <!-- <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">All certificates</a> are publicly logged through the <a href="https://www.certificate-transparency.org/">Certificate Transparency</a> system</p> -->
+        </section>
+
+        <section>
+          <h2><u>オープンな</u>CA</h2>
+					<!-- <h2>An <u>Open</u> CA</h2> -->
+          <p>Let's Encryptが使ってるすべてのツール・ソフトウェアはオープンソース:</p>
+					<!-- <p>Everything Let's Encrypt uses is open-source:</p> -->
+          <ul>
+						<li><a href="https://github.com/letsencrypt/boulder/">証明機関</a>のためのソフトウェア</li>
+            <li><a href="https://github.com/letsencrypt/letsencrypt/">証明書を取得する</a>ためのソフトウェア</li>
+            <li><a href="https://github.com/bifurcation/letsencrypt-overview/">このプレゼンテーション</a>もオープンソースです</li>
+            <!-- <li>The software that runs the <a href="https://github.com/letsencrypt/boulder/">certificate authority</a></li>
+            <li>The software you can use to <a href="https://github.com/letsencrypt/letsencrypt/">get a certificate</a></li>
+            <li>Even <a href="https://github.com/bifurcation/letsencrypt-overview/">this presentation</a>!</li> -->
+          </ul>
+          <p><br></p>
+          <h2>Pull requestをお待ちしています</h2>
+					<!-- <h2>Pull requests welcome!</h2> -->
+        </section>
+
+        <section>
+          <h2><u>協調的な</u>CA</h2>
+					<!-- <h2>A <u>Cooperative</u> CA</h2> -->
+          <ul>
+						<li>Let's Encryptで使用しているACMEプロトコルは<a href="https://tools.ietf.org/wg/acme/">IETFで標準化されています。</a>
+							つまり、すべてのCAで利用することが出来ます。</li>
+            <li>ユーザサポートもすべてオープンな<a href="https://community.letsencrypt.org/">コミュニティシステム</a>で行われいます。</li>
+            <!-- <li>The ACME protocol used by Let's Encrypt is being <a href="https://tools.ietf.org/wg/acme/">standardized by the IETF</a> so that it can be used by all CAs</li>
+            <li>Help for users is provided by an open <a href="https://community.letsencrypt.org/">community support system</a></li> -->
+          </ul>
+        </section>
+
+        <section>
+          <h2>まだ始まったばかりです...</h2>
+					<!-- <h2>Only the beginning...</h2> -->
+          <ul>
+						<li>Let's Encryptは現在既存CAの下部CAとして信頼されています</li>
+            <li>つまりブラウザによって信頼されています</li>
+            <li><a href="https://helloworld.letsencrypt.org/">デモサイト</a>で実際の証明書を確認できます</li>
+            <li>もし興味がありましたら、是非<a href="https://docs.google.com/forms/d/15Ucm4A20y2rf9gySCTXD6yoLG6Tba7AwYgglV7CKHmM/viewform?c=0&w=1">ベータプログラム</a>に
+							参加登録ください</li>
+            <li>2015年遅くにはみなさんが利用出来るように計画中です</li>
+            <!-- <li>Let's Encrypt is currently trusted as a subordinate to an existing CA</li>
+            <li>They have applied to be trusted by the browsers</li>
+            <li>You can see a real cert at the <a href="https://helloworld.letsencrypt.org/">demo site</a></li>
+            <li>... or sign up for the <a href="https://docs.google.com/forms/d/15Ucm4A20y2rf9gySCTXD6yoLG6Tba7AwYgglV7CKHmM/viewform?c=0&w=1">beta program</a></li>
+            <li>General availability scheduled for late 2015</li> -->
+          </ul>
+        </section>
+
+        <section>
+          <img src="./img/verifiedby.png"/>
+        </section>
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="./reveal/lib/js/head.min.js"></script>
+		<script src="./reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+			});
+
+      document.body.onclick = function() {
+        document.body.mozRequestFullScreen();
+      }
+
+		</script>
+
+	</body>
+</html>
