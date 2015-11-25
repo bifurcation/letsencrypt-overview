@@ -21,3 +21,8 @@ could contribute your translation of this presentation.  Just change
 tag](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
 for the language of the translation) and submit a [pull
   request](https://github.io/bifurcation/letsencrypt-overview).
+
+Currently available translations:
+* [English](https://bifurcation.github.io/letsencrypt-overview/index-en.html)
+* [Deutsch](https://bifurcation.github.io/letsencrypt-overview/index-de.html)
+* [日本語](https://bifurcation.github.io/letsencrypt-overview/index-jp.html)
