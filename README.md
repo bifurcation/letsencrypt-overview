@@ -13,16 +13,16 @@ To open the presentation, just clone the repository and open the presentation:
 ```
 
 If you want to use the default English version, you can view it [through Github
-pages](http://bifurcation.github.io/letsencrypt-overview).
-
-If you're presenting in a language other than English, it would be great if you
-could contribute your translation of this presentation.  Just change
-`index.html` to `index-TAG.html` (where `TAG` is a [language
-tag](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
-for the language of the translation) and submit a [pull
-  request](https://github.io/bifurcation/letsencrypt-overview).
+pages](https://bifurcation.github.io/letsencrypt-overview).
 
 Currently available translations:
 * [English](https://bifurcation.github.io/letsencrypt-overview/index-en.html)
 * [Deutsch](https://bifurcation.github.io/letsencrypt-overview/index-de.html)
 * [日本語](https://bifurcation.github.io/letsencrypt-overview/index-jp.html)
+
+If you're presenting in a language other than those above, it would be great if you
+could contribute your translation of this presentation.  Just change
+`index.html` to `index-TAG.html` (where `TAG` is a [language
+tag](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
+for the language of the translation) and submit a [pull
+  request](https://github.com/bifurcation/letsencrypt-overview).
