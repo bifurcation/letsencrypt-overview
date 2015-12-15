@@ -11,6 +11,7 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
+    <link rel="stylesheet" href="./css/letsencrypt.css">
 		<link rel="stylesheet" href="./reveal/css/reveal.css">
 		<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
 
@@ -37,16 +38,26 @@
 			<div class="slides">
 
         <section>
-          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+          <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
         </section>
 
         <section>
-          <h2>What problem are we trying to solve?</h2>
+          <h2>A Moment of Historic Reflection</h2>
+          <img class="plain" src="./img/netscape.jpg" style="height: 350px;">
+          <ul>
+            <li>In 1995, Netscape released a browser with support for SSL</li>
+            <li>For the first time, everyone had easy access to encrypted communications</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>20 Years Later</h2>
+          <img src="./img/encrypted-vs-unencrypted.png" style="height: 300px;">
           <ul>
             <li>Not enough HTTPS on the Internet
               <ul>
-                <li><a href="http://mzl.la/1LG5eZp">~30% of pageloads</a></li>
-                <li><a href="http://mzl.la/1LG5cAy">~64% of HTTP transactions</a></li>
+                <li><a href="http://mzl.la/1LG5eZp">~40% of pageloads</a></li>
+                <li><a href="http://mzl.la/1LG5cAy">~65% of HTTP transactions</a></li>
               </ul>
             </li>
             <li>These numbers should be 100%</li>
@@ -54,27 +65,41 @@
         </section>
 
         <section>
-          <h2>Security is important...</h2>
+          <h2>Security is Important</h2>
+          <img src="./img/firesheep.png" style="height: 300px;">
           <ul>
-            <li><b>Confidentiality:</b> Prevent <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">spying</a> on what you're doing.</li>
-            <li><b>Privacy:</b> Prevent <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">injected tracking cookies</a></li>
-            <li><b>Integrity:</b> Prevent <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">injected advertising</a></li>
-            <li><b>Authenticity:</b> Ensure you're talking to the real site and not <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">part of a DDoS</a></li>
+            <li><b>Confidentiality:</b> Prevent <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">spying</a> on what you're doing</li>
+            <li><b>Integrity:</b> Prevent injected <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">advertising</a> or <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">tracking cookies</a></li>
+            <li><b>Authenticity:</b> Ensure you're talking to the real site and not <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">part of a DDoS</a> or being served <a href="https://support.google.com/webmasters/answer/3024344">malware</a></li>
           </ul>
         </section>
 
         <section>
-          <h2>... but getting a certificate is hard</h2>
+          <h2>Getting a Certificate is Hard</h2>
+          <img src="./img/phd-computer-science-no-cert.jpg" style="height: 350px;">
           <ul>
             <li>Manual process, different for every provider</li>
-            <li>First you have to apply for the certificate...</li>
-            <li>... then you have to figure out how to install it</li>
-            <li>Can't we just automate all of this?</li>
+            <li>First you have to apply for the certificate&hellip;</li>
+            <li>&hellip;then you have to figure out how to install it</li>
           </ul>
         </section>
 
         <section>
-          <h2>A new certificate authority</h2>
+          <h2>Why is This So Hard?</h2>
+          <div>
+            <video src="./video/too-much-money-no-audio.mp4" style="height: 300px;" autoplay></video>
+          </div>
+          <ul>
+            <li>Certificates are a gating factor to setting up a secure website</li>
+            <li>The entities selling them want to make money</li>
+            <li>This leads to things being expensive, difficult, and proprietary</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
+          <h2 style="color: #2C3C69; font-family: Gibson, Arial, Helvetica, sans-serif; font-size: 1.6em; font-weight: 600; margin-top: -.25em; text-transform: none;">is a new certificate authority</h2>
           <ul>
             <li>Free</li>
             <li>Automated</li>
@@ -85,11 +110,23 @@
         </section>
 
         <section>
+          <h2>A <u>Free</u> CA</h2>
+          <img src="./img/gratis.png">
+          <ul>
+            <li>Country of origin</li>
+            <li>Ability to pay</li>
+            <li>Individual, a government, or a corporation</li>
+          </ul>
+        </section>
+
+        <section>
           <section>
             <h2>An <u>Automated</u> CA</h2>
+            <img src="./img/automated-ca.png" />
             <ul>
               <li>Most of the work in issuing a certificate is in verifying domain control</li>
-              <li>Let's Encrypt uses a <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">standard protocol</a> to verify domain control automatically</li>
+              <li>Let's Encrypt uses a <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">standard protocol</a> to verify domain control automatically prior to certificate generation</li>
+              <li>Certificate renewals use this same process</li>
             </ul>
           </section>
           
@@ -129,24 +166,26 @@
 
         <section>
           <h2>A <u>Transparent</u> CA</h2>
-          <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">All certificates</a> are publicly logged through<br />the <a href="https://www.certificate-transparency.org/">Certificate Transparency</a> system</p>
+          <img src="./img/certificate-transparency.png" style="height: 300px;">
+          <p><a href="https://crt.sh/?Identity=%25&amp;iCAID=7395">All certificates</a> are publicly logged through<br />the <a href="https://www.certificate-transparency.org/">Certificate Transparency</a> system</p>
         </section>
 
         <section>
           <h2>An <u>Open</u> CA</h2>
-          <p>Everything Let's Encrypt uses is open-source:</p>
+          <p>Everything Let's Encrypt uses is open source:</p>
+          <img src="./img/github-repo.png" style="height: 240px; margin: 0;">
           <ul>
             <li>The software that runs the <a href="https://github.com/letsencrypt/boulder/">certificate authority</a></li>
             <li>The software you can use to <a href="https://github.com/letsencrypt/letsencrypt/">get a certificate</a></li>
-            <li>Even <a href="https://github.com/bifurcation/letsencrypt-overview/">this presentation</a>!</li>
+            <li>Even <a href="https://github.com/bifurcation/letsencrypt-overview">this presentation</a>!</li>
           </ul>
-          <p><br></p>
-          <h2>Pull requests welcome!</h2>
+          <h2 style="margin-top: 15px;">Pull requests welcome!</h2>
         </section>
 
         <section>
           <section>
             <h2>A <u>Cooperative</u> CA</h2>
+            <img src="./img/ietf-acme.png" style="height: 250px;">
             <ul>
               <li>The ACME protocol used by Let's Encrypt is being <a href="https://tools.ietf.org/wg/acme/">standardized by the IETF</a> so that it can be used by all CAs</li>
               <li>Help for users is provided by an open <a href="https://community.letsencrypt.org/">community support system</a></li>
@@ -175,28 +214,29 @@
         </section>
 
         <section>
-          <h2>100,000 Certificates and Counting</h2>
+          <h2>130,000 Certificates and Counting</h2>
           <a href="https://letsencrypt.org/stats/">
             <img style="height: 500px" src="./img/certificatesByDay.png"/>
           </a>
         </section>
 
         <section>
-          <h2>Only the beginning...</h2>
+          <h2>Only the Beginning&hellip;</h2>
           <ul>
             <li>Let's Encrypt is currently trusted as a subordinate to an existing CA</li>
             <li>They have applied to be trusted by the browsers</li>
-            <li>You can see a real cert at the <a href="https://helloworld.letsencrypt.org/">demo site</a></li>
-            <li>General availability began December 3, 2015</li>
+            <li>General availability began December 3, 2015; already the 6<sup style="font-size: .8em; position: relative; top: -.4em; vertical-align: baseline;">th</sup> largest issuer</li>
+            <li>Secure <em>all</em> the internet: email, chat, and more!</li>
           </ul>
         </section>
 
         <section>
-          <img src="./img/verifiedby.png"/>
+          <h2>A Message to the World</h2>
+          <img src="./img/verifiedby.png" style="height: 400px;">
         </section>
 
         <section>
-          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+          <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
         </section>
 
 			</div>
@@ -205,6 +245,7 @@
 
 		<script src="./reveal/lib/js/head.min.js"></script>
 		<script src="./reveal/js/reveal.js"></script>
+    <script src="./reveal/plugin/notes.js"></script>
 
 		<script>
 
