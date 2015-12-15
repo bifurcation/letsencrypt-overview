@@ -50,17 +50,19 @@
           </ul>
         </section>
 
-        <section>
+        <section style="padding-top: 0;">
           <h2>20 Years Later</h2>
-          <img src="./img/encrypted-vs-unencrypted.png" style="height: 300px;">
+          <div>
+            <img src="./img/encrypted-vs-unencrypted.png" style="height: 380px;">
+          </div>
           <ul>
             <li>Not enough HTTPS on the Internet
               <ul>
-                <li><a href="http://mzl.la/1LG5eZp">~40% of pageloads</a></li>
-                <li><a href="http://mzl.la/1LG5cAy">~65% of HTTP transactions</a></li>
+                <li><a href="http://mzl.la/1LG5eZp">~40% of initial page loads</a></li>
+                <li><a href="http://mzl.la/1LG5cAy">~65% of all subsequent requests</a></li>
               </ul>
             </li>
-            <li>These numbers should be 100%</li>
+            <li>Both numbers should be 100%</li>
           </ul>
         </section>
 
@@ -90,7 +92,7 @@
             <video src="./video/too-much-money-no-audio.mp4" style="height: 300px;" data-autoplay></video>
           </div>
           <ul>
-            <li>Certificates are a gating factor to setting up a secure website</li>
+            <li>Certificates are required to set up a secure website</li>
             <li>The entities selling them want to make money</li>
             <li>This leads to things being expensive, difficult, and proprietary</li>
           </ul>
@@ -140,7 +142,7 @@
           
           <section>
             <h2>Domain Validation</h2>
-            <p>Give them a challenge that only the domain owner can complete:</p>
+            <p>Give them a challenge that only<br />the domain owner can complete:</p>
             <ul>
               <li>Provision a DNS record for <br/><b>_acme-challenge.example.com</b></li>
               <li>Provision a file at <br/><b>http://example.com/.well-known/acme-challenge/</b></li>
@@ -176,8 +178,8 @@
           <img src="./img/github-repo.png" style="height: 240px; margin: 0;">
           <ul>
             <li>The software that runs the <a href="https://github.com/letsencrypt/boulder/">certificate authority</a></li>
-            <li>The software you can use to <a href="https://github.com/letsencrypt/letsencrypt/">get a certificate</a></li>
-            <li>Even <a href="https://github.com/bifurcation/letsencrypt-overview">this presentation</a>!</li>
+            <li>The software you use to <a href="https://github.com/letsencrypt/letsencrypt/">get a certificate</a></li>
+            <li>Even <a href="https://github.com/marumari/letsencrypt-overview">this presentation</a>!</li>
           </ul>
           <h2 style="margin-top: 15px;">Pull requests welcome!</h2>
         </section>
