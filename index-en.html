@@ -34,20 +34,24 @@
 
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-
         <section>
           <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
+          <aside class="notes">
+            Because I am old and curmudgeonly...
+          </aside>
         </section>
 
         <section>
           <h2>A Moment of Historic Reflection</h2>
-          <img class="plain" src="./img/netscape.jpg" style="height: 350px;">
+          <img class="plain" src="./img/netscape.jpg" style="height: 380px;">
           <ul>
-            <li>In 1995, Netscape released a browser with support for SSL</li>
+            <li>In 1995, Netscape released a browser with HTTPS</li>
             <li>For the first time, everyone had easy access to encrypted communications</li>
           </ul>
+          <aside class="notes">
+            You didn't need to be a corporation with $$$, a government agency with a pile of mathematicians, or even have to understand PGP and cryptographic keys. Started as passwords and CCs, now everything: email, social media, wikipedia articles, etc. Matters a lot to Mozilla (manifesto)...
+          </aside>
         </section>
 
         <section style="padding-top: 0;">
@@ -63,6 +67,9 @@
               </ul>
             </li>
           </ul>
+          <aside class="notes">
+            If you care about the internet, these numbers should be 100%
+          </aside>
         </section>
 
         <section>
@@ -73,6 +80,9 @@
             <li><b>Integrity:</b> Prevent injected <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">advertising</a> or <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">tracking cookies</a></li>
             <li><b>Authenticity:</b> Ensure you're talking to the real site and not <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">part of a DDoS</a> or being served <a href="https://support.google.com/webmasters/answer/3024344">malware</a></li>
           </ul>
+          <aside class="notes">
+            Without HTTPS, with HTTP, you don't know...
+          </aside>
         </section>
 
         <section>
@@ -80,9 +90,12 @@
           <img src="./img/hates-installing-certificates.jpg" style="height: 360px;">
           <ul>
             <li>Manual process, different for every provider</li>
-            <li>First you have to apply for the certificate&hellip;</li>
+            <li>First you have to request a certificate&hellip;</li>
             <li>&hellip;then you have to figure out how to install it</li>
           </ul>
+          <aside class="notes">
+            Request: some arcane commands to generate some keys and then what's called a certificate signing request, then copy-paste in some web form, pay money, verify identity, eventually get and install cert
+          </aside>
         </section>
 
         <section>
@@ -95,30 +108,28 @@
             <li>The entities selling them want to make money</li>
             <li>This leads to things being expensive, difficult, and proprietary</li>
           </ul>
-
+          <aside class="notes">
+            We need something that's free, easy, and open. I'm here to tell you that it exists, it's called LE, and we launched two weeks ago.
+          </aside>
         </section>
 
         <section>
           <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
           <h2 style="color: #2C3C69; font-family: Gibson, Arial, Helvetica, sans-serif; font-size: 1.6em; font-weight: 600; margin-top: -.25em; text-transform: none;">is a new certificate authority</h2>
-          <ul>
-            <li>Free</li>
-            <li>Automated</li>
-            <li>Transparent</li>
-            <li>Open</li>
-            <li>Cooperative</li>
-          </ul>
         </section>
 
         <section>
           <h2>A <u>Free</u> CA</h2>
-          <img src="./img/gratis.png" style="height: 300px;">
-          <p>Regardless of your&hellip;</p>
+          <img src="./img/gratis.png" style="height: 280px;">
+          <p style="font-style: oblique; margin-top: 0;">Things that don't matter:</p>
           <ul>
             <li>Ability to pay</li>
-            <li>Country of origin</li>
-            <li>Individual, a government, or a corporation</li>
+            <li>Where you reside</li>
+            <li>Individual, organization, or corporation</li>
           </ul>
+          <aside>
+            Whether a multi-billionaire or a 12-year-old on an allowance. Money == taxes and complicated laws, limiting choice and availability
+          </aside>
         </section>
 
         <section>
@@ -131,7 +142,7 @@
               <li>Certificate renewals use this same process</li>
             </ul>
           </section>
-          
+
           <section>
             <h2>Automated Certificate Management Environment (ACME)</h2>
             <ul>
@@ -139,7 +150,7 @@
               <li>How do you know they actually own <b>example.com</b>?</li>
             </ul>
           </section>
-          
+
           <section>
             <h2>Domain Validation</h2>
             <p>Give them a challenge that only<br />the domain owner can complete:</p>
@@ -149,7 +160,7 @@
               <li>Configure a TLS server on <b>example.com</b></li>
             </ul>
           </section>
-          
+
           <section>
             <h2>Automated Validation</h2>
             <ul>
@@ -195,6 +206,9 @@
               <li>Community development and support</li>
               <li>Built on an open standard for all CAs</li>
             </ul>
+            <aside class="notes">
+              Founding sponsors: Akamai, Cisco, and EFF. When we started, we thought, we'll right this software on the server, etc, client, etc.
+            </aside>
           </section>
 
           <section>
@@ -206,20 +220,29 @@
               <li><a href="https://wiki.mozilla.org/Security/Automation/Winter_Of_Security_2015/Certificate_Automation_tooling_for_Lets_Encrypt">nginx</a> (soon)</li>
               <li>[ your name here ]</li>
             </ul>
+            <aside class="notes">
+              Able to do this because built on an open standard...
+            </aside>
           </section>
 
           <section>
             <h2>An Upcoming Standard</h2>
             <img src="./img/ietf-acme.png" style="height: 250px;">
             <ul>
-              <li>The ACME protocol used by Let's Encrypt is being <a href="https://tools.ietf.org/wg/acme/">standardized by the IETF</a> so that it can be used by all CAs</li>
+              <li>The ACME protocol is in the process being <a href="https://tools.ietf.org/wg/acme/">standardized by the IETF</a> so that it can be used by all CAs</li>
               <li>Help for users is provided by an open <a href="https://community.letsencrypt.org/">community support system</a></li>
             </ul>
+            <aside class="notes">
+              Show you a demo, guy who wrote a third party client not affiliated with LE, a video he made without our help, and posted on youtube without our knowledge, and we found it, and I'm going to show it to you.
+            </aside>
           </section>
 
           <section id="caddy-demo">
             <h2>The Future</h2>
             <video style="height: 500px;" src="./video/caddy.mp4" controls></video>
+            <aside class="notes">
+              So, since we've launched, how are we doing?
+            </aside>
           </section>
         </section>
 
@@ -228,16 +251,21 @@
           <a href="https://letsencrypt.org/stats/">
             <img style="height: 500px" src="./img/certificatesByDay.png"/>
           </a>
+          <aside class="notes">
+            GA on December 3rd, refer to the current numbers
+          </aside>
         </section>
 
         <section>
           <h2>Only the Beginning&hellip;</h2>
           <ul>
-            <li>Let's Encrypt is currently trusted as a subordinate to an existing CA</li>
-            <li>They have applied to be trusted by the browsers</li>
-            <li>General availability began December 3, 2015; already the 6<sup style="font-size: .8em; position: relative; top: -.4em; vertical-align: baseline;">th</sup> largest issuer</li>
-            <li>Secure <em>all</em> the internet: email, chat, and more!</li>
+            <li>General availability began December 3, 2015 and is already the 5<sup style="font-size: .8em; position: relative; top: -.4em; vertical-align: baseline;">th</sup> largest issuer of certificates</li>
+            <li class="fragment" style="margin-top: .75em;">Get every website using HTTPS</li>
+            <li class="fragment">Secure <em>all</em> the internet: email, chat, and more!</li>
           </ul>
+          <aside class="notes">
+            Before I wrap up, and I want to leave you all with one final message
+          </aside>
         </section>
 
         <section>
