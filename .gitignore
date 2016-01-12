@@ -6,9 +6,3 @@ node_modules/
 .sass-cache
 css/reveal.min.css
 js/reveal.min.js
-test
-plugin
-lib
-Gruntfile.js
-bower.json
-package.json

@@ -11,22 +11,25 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-    <link rel="stylesheet" href="./css/letsencrypt.css">
-		<link rel="stylesheet" href="./reveal/css/reveal.css">
-		<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="local-css/letsencrypt.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal/css/print/pdf.css'
-                                                                : './reveal/css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './css/print/pdf.css'
+                                                                : './css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
 		<!--[if lt IE 9]>
-		<script src="./reveal/lib/js/html5shiv.js"></script>
+		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
 
@@ -36,7 +39,7 @@
 
 			<div class="slides">
         <section>
-          <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
+          <img src="img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
           <aside class="notes">
             Because I am old and curmudgeonly...
           </aside>
@@ -44,7 +47,7 @@
 
         <section>
           <h2>A Moment of Historic Reflection</h2>
-          <img class="plain" src="./img/netscape.jpg" style="height: 380px;">
+          <img class="plain" src="img/netscape.jpg" style="height: 380px;">
           <ul>
             <li>In 1995, Netscape released a browser with HTTPS</li>
             <li>For the first time, everyone had easy access to encrypted communications</li>
@@ -57,7 +60,7 @@
         <section style="padding-top: 0;">
           <h2>20 Years Later</h2>
           <div>
-            <img src="./img/encrypted-vs-unencrypted.png" style="height: 380px;">
+            <img src="img/encrypted-vs-unencrypted.png" style="height: 380px;">
           </div>
           <ul>
             <li>Not enough HTTPS on the Internet
@@ -74,7 +77,7 @@
 
         <section>
           <h2>Security is Important</h2>
-          <img src="./img/firesheep.png" style="height: 300px;">
+          <img src="img/firesheep.png" style="height: 300px;">
           <ul>
             <li><b>Confidentiality:</b> Prevent <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">spying</a> on what you're doing</li>
             <li><b>Integrity:</b> Prevent injected <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">advertising</a> or <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">tracking cookies</a></li>
@@ -87,7 +90,7 @@
 
         <section>
           <h2>Getting a Certificate is Hard</h2>
-          <img src="./img/hates-installing-certificates.jpg" style="height: 360px;">
+          <img src="img/hates-installing-certificates.jpg" style="height: 360px;">
           <ul>
             <li>Manual process, different for every provider</li>
             <li>First you have to request a certificate&hellip;</li>
@@ -101,7 +104,7 @@
         <section>
           <h2>Why is This So Hard?</h2>
           <div>
-            <video src="./video/too-much-money-no-audio.mp4" style="height: 300px;" data-autoplay></video>
+            <video src="video/too-much-money-no-audio.mp4" style="height: 300px;" data-autoplay></video>
           </div>
           <ul>
             <li>Certificates are required to set up a secure website</li>
@@ -114,13 +117,13 @@
         </section>
 
         <section>
-          <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
+          <img src="img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
           <h2 style="color: #2C3C69; font-family: Gibson, Arial, Helvetica, sans-serif; font-size: 1.6em; font-weight: 600; margin-top: -.25em; text-transform: none;">is a new certificate authority</h2>
         </section>
 
         <section>
           <h2>A <u>Free</u> CA</h2>
-          <img src="./img/gratis.png" style="height: 280px;">
+          <img src="img/gratis.png" style="height: 280px;">
           <p style="font-style: oblique; margin-top: 0;">Things that don't matter:</p>
           <ul>
             <li>Ability to pay</li>
@@ -135,7 +138,7 @@
         <section>
           <section>
             <h2>An <u>Automated</u> CA</h2>
-            <img src="./img/automated-ca.png" />
+            <img src="img/automated-ca.png" />
             <ul>
               <li>Most of the work in issuing a certificate is in verifying domain control</li>
               <li>Let's Encrypt uses a <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">standard protocol</a> to verify domain control automatically prior to certificate generation</li>
@@ -179,14 +182,14 @@
 
         <section>
           <h2>A <u>Transparent</u> CA</h2>
-          <img src="./img/certificate-transparency.png" style="height: 300px;">
+          <img src="img/certificate-transparency.png" style="height: 300px;">
           <p><a href="https://crt.sh/?Identity=%25&amp;iCAID=7395">All certificates</a> are publicly logged through<br />the <a href="https://www.certificate-transparency.org/">Certificate Transparency</a> system</p>
         </section>
 
         <section>
           <h2>An <u>Open</u> CA</h2>
           <p>Everything Let's Encrypt uses is open source:</p>
-          <img src="./img/github-repo.png" style="height: 240px; margin: 0;">
+          <img src="img/github-repo.png" style="height: 240px; margin: 0;">
           <ul>
             <li>The software that runs the <a href="https://github.com/letsencrypt/boulder/">certificate authority</a></li>
             <li>The software you use to <a href="https://github.com/letsencrypt/letsencrypt/">get a certificate</a></li>
@@ -199,7 +202,7 @@
           <section>
             <h2>A <u>Cooperative</u> CA</h2>
             <a href="https://letsencrypt.org/sponsors/">
-              <img style="height: 350px" src="./img/sponsors.png"/>
+              <img style="height: 350px" src="img/sponsors.png"/>
             </a>
             <ul>
               <li>Wide industry sponsorship</li>
@@ -227,7 +230,7 @@
 
           <section>
             <h2>An Upcoming Standard</h2>
-            <img src="./img/ietf-acme.png" style="height: 250px;">
+            <img src="img/ietf-acme.png" style="height: 250px;">
             <ul>
               <li>The ACME protocol is in the process being <a href="https://tools.ietf.org/wg/acme/">standardized by the IETF</a> so that it can be used by all CAs</li>
               <li>Help for users is provided by an open <a href="https://community.letsencrypt.org/">community support system</a></li>
@@ -239,7 +242,7 @@
 
           <section id="caddy-demo">
             <h2>The Future</h2>
-            <video style="height: 500px;" src="./video/caddy.mp4" controls></video>
+            <video style="height: 500px;" src="video/caddy.mp4" controls></video>
             <aside class="notes">
               So, since we've launched, how are we doing?
             </aside>
@@ -270,33 +273,42 @@
 
         <section>
           <h2>A Message to the World</h2>
-          <img src="./img/verifiedby.png" style="height: 400px;">
+          <img src="img/verifiedby.png" style="height: 400px;">
         </section>
 
         <section>
-          <img src="./img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
+          <img src="img/letsencrypt-logo-horizontal.svg" class="plain" style="width: 50%;"/>
         </section>
 
 			</div>
 
 		</div>
 
-		<script src="./reveal/lib/js/head.min.js"></script>
-		<script src="./reveal/js/reveal.js"></script>
-    <script src="./reveal/plugin/notes.js"></script>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
 
 		<script>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
         slideNumber: 'c/t',
-			});
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
 
 		</script>
 
