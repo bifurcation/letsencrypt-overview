@@ -250,11 +250,11 @@
         </section>
 
         <section>
-          <h2>Hundreds of Thousands of Certificates and Counting</h2>
+          <h2>This Line Keeps Going Upward</h2>
           <a href="https://letsencrypt.org/stats/">
             <img class="img-fallback" style="height: 500px"
-                 src="https://plotz.ly/~letsencrypt/7.png"
-                 fallback="img/le-cert-graph.png"/>
+                 src="https://plot.ly/~letsencrypt/7.png"
+                 data-fallback="img/le-cert-graph.png"/>
           </a>
           <aside class="notes">
             GA on December 3rd, refer to the current numbers
@@ -313,10 +313,10 @@
       });
 
       // If an image has a class "img-fallback" and fails to load, then
-      // fall back to loading the img from the "fallback" attribute.
+      // fall back to loading the img from the "data-fallback" attribute.
       for (img of document.getElementsByClassName('img-fallback')) {
         img.addEventListener("error", function(){
-          this.src = this.getAttribute("fallback");
+          this.src = this.getAttribute("data-fallback");
         });
       }
 
