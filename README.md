@@ -19,6 +19,7 @@ Currently available translations:
 * [English](https://bifurcation.github.io/letsencrypt-overview/index-en.html)
 * [Deutsch](https://bifurcation.github.io/letsencrypt-overview/index-de.html)
 * [日本語](https://bifurcation.github.io/letsencrypt-overview/index-jp.html)
+* [繁體中文](https://bifurcation.github.io/letsencrypt-overview/index-hant.html)
 
 If you're presenting in a language other than those above, it would be great if you
 could contribute your translation of this presentation.  Just change
