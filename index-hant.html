@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="hant">
+<!-- 
+   ***************
+   * Traditional Chinese Translation by
+   * William Hsu whsu@mozilla.com
+   ***************
+-->
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Let's Encrypt - 概觀</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="./reveal/css/reveal.css">
+	<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
+
+	<!-- Printing and PDF exports -->
+	<script>
+    var link = document.createElement( 'link' );
+		  link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal/css/print/pdf.css'
+                                                                : './reveal/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+	<!--[if lt IE 9]>
+	  <script src="./reveal/lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  	<div class="slides">
+      <section>
+        <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+      </section>
+
+      <section>
+        <h2>我們正試圖解決什麼問題？</h2>
+        <ul>
+          <li>網際網路上HTTPS連線不夠的問題
+            <ul>
+              <li><a href="http://mzl.la/1LG5eZp">~30% 的網頁下載</a></li>
+              <li><a href="http://mzl.la/1LG5cAy">~64% 的HTTP異動</a></li>
+            </ul>
+          </li>
+          <li>這個比例應該是100%</li>
+        </ul>
+      </section>
+
+    <section>
+      <h2>網際網路的安全是重要的...</h2>
+      <ul>
+        <li><b>保密性:</b> 防止<a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">網路間諜監控</a> </li>
+        <li><b>私密性:</b> 防止<a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">追蹤cookie的攻擊</a> </li>
+        <li><b>完整性:</b> 防止<a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">廣告的入侵</a> </li>
+        <li><b>真實性:</b> 確保你與真實的網站互動而不是<a href="https://citizenlab.org/2015/04/chinas-great-cannon/">殭屍(DDoS)網路</a> </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>但是，取得憑證是困難的</h2>
+      <ul>
+        <li>不同的供應商有不同的人工流程</li>
+        <li>首先，你必須取得網路憑證...</li>
+        <li>然後，你要搞懂如何安裝它</li>
+        <li>為什麼我們不能讓這一切手續自動化呢？</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>一個新的網路憑證機構</h2>
+      <ul></ul>
+    </section>
+
+    <section>
+      <section>
+        <h2>一個<u>自動化</u>的CA</h2>
+        <ul>
+          <li>發行這張網路憑證的大部份時間，只會花費在驗證和確認網域擁有者的身份</li>
+          <li>Let's Encrypt 使用<a href="https://tools.ietf.org/html/draft-ietf-acme-acme">標準的協定</a>,用自動化的方式驗證網域擁有者身份</li>
+        </ul>
+      </section>
+          
+      <section>
+        <h2>憑證管理自動化環境<br/><small>Automated Certificate Management Environment (ACME)</small></h2>
+        <ul>
+          <li>假設有人要求一個網路憑證，例如<b>example.com</b>。你如何知道請求者擁有<b>example.com</b>?</li>
+        </ul>
+      </section>
+          
+      <section>
+        <h2>網域名確認</h2>
+        <p>給一個網域擁有者才能完成的試驗，比如：</p>
+        <ul>
+          <li>提供<b>acme-challenge.example.com</b>的DNS紀錄</li>
+            <li>在<b>http://example.com/.well-known/acme-challenge</b></br>提供特定檔案</li>
+            <li>在<b>example.com</b>上，設定TLS伺服器</li>
+          </ul>
+      </section>
+
+      <section>
+        <h2>自動化的驗證</h2>
+          <ul>
+            <li>整個過程在<a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME 說明書</a>中被解釋 
+              <ul>  
+                <li>使用者如何要求授權</li>
+                <li>使用者如何完成試驗</li>
+                <li>使用者如何要求憑證</li>
+              </ul>
+            </li>
+            <li>有一個標準的協議也代表著使用者可以自行建立工具</li>
+            <li>ACME的願景是將上述的過程導入網站伺服器，使其自動化設定HTTPS</li>
+          </ul>
+      </section>
+    </section>
+
+    <section>
+      <h2>一個<u>透明化的</u>CA</h2>
+        <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">所有的憑證</a>被公開地登入<a href="https://www.certificate-transparency.org/">憑證透明度系統</a></p>
+    </section>
+
+    <section>
+      <h2>一個<u>公開的</u> CA</h2>
+      <p>Let's Encrypt 使用開放源碼軟體</p>
+      <ul>
+        <li>軟體執行<a href="https://github.com/letsencrypt/boulder/">CA</a>所做的事</li>
+        <li>軟體能幫您<a href="https://github.com/letsencrypt/letsencrypt/">獲取一個憑證</a></li>
+        <li>甚至<a href="https://github.com/bifurcation/letsencrypt-overview/">說明文件</a>!</li>
+      </ul>
+      <p><br></p>
+      <h2>歡迎提交程式碼!</h2>
+    </section>
+
+    <section>
+      <section>
+        <h2>一個<u>合作化的</u>CA</h2>
+        <ul>
+          <li>Let's Encrypt使用的ACME協定,該協定正在被<a href="https://tools.ietf.org/wg/acme/">IETF</a>標準化，因此它能被套用到所有的CA</li>
+          <li>使用者能從<a href="https://community.letsencrypt.org/">開源社群</a>得到幫助</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>贊助者來自各行各業</h2>
+        <a href="https://letsencrypt.org/stats/"><img style="height: 500px" src="./img/sponsors.png"/></a>
+      </section>
+
+      <section>
+        <h2>平台整合</h2>
+        <ul>
+          <li><a href="https://community.akamai.com/thread/2782">Akamai</a> (currently in beta)</li>
+          <li><a href="https://caddyserver.com/">Caddy</a> HTTP/2 server (<a href="#caddy-demo">demo</a>)</li>
+          <li><a href="https://www.dreamhost.com/blog/2015/12/03/lets-encrypt-and-dreamhost/">Dreamhost</a> (soon)</li>
+          <li><a href="https://wiki.mozilla.org/Security/Automation/Winter_Of_Security_2015/Certificate_Automation_tooling_for_Lets_Encrypt">nginx</a> (soon)</li>
+        </ul>
+      </section>
+
+      <section id="caddy-demo">
+        <h2>未來...</h2>
+          <video style="height: 500px;" src="./video/caddy.mp4" controls></video>
+      </section>
+    </section>
+
+    <section>
+      <h2>250,000 憑證和數量</h2>
+        <a href="https://letsencrypt.org/stats/"><img style="height: 500px" src="./img/certificatesByDay.png"/></a>
+    </section>
+
+    <section>
+      <h2>這只是剛剛開始...</h2>
+      <ul>
+        <li>對於現存的CA來說，Let's Encrypt能被當成次要的機構被信任。</li>
+        <li>Let's Encrypt能被瀏覽器信任</li>
+        <li>您可以在我們<a href="https://helloworld.letsencrypt.org/">展示的網站</a>上，看到真實的憑證</li>
+        <li>大致上會於2015年12月3號問世！</li>
+      </ul>
+    </section>
+
+    <section>
+      <img src="./img/verifiedby.png"/>
+    </section>
+
+    <section>
+      <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+    </section>
+
+	  </div>
+  </div>
+
+		<script src="./reveal/lib/js/head.min.js"></script>
+		<script src="./reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+			});
+
+      document.body.onclick = function() {
+        document.body.mozRequestFullScreen();
+      }
+
+		</script>
+
+	</body>
+</html>
