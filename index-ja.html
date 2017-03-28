@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Let's Encrypt - Overview</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="./reveal/css/reveal.css">
+		<link rel="stylesheet" href="./reveal/css/theme/beige.css" id="theme">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal/css/print/pdf.css'
+                                                                : './reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="./reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+        <section>
+          <h2>何を解決するのか?</h2>
+          <ul>
+            <li>インターネットの HTTPS 化はまだまだ途上
+              <ul>
+                <li><a href="http://mzl.la/1LG5eZp">ページロードの 30%</a></li>
+                <li><a href="http://mzl.la/1LG5cAy">HTTP トランザクションの 64%</a></li>
+              </ul>
+            </li>
+            <li>これらは 100% になるべき</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>なぜセキュリティは重要か...</h2>
+          <ul>
+            <li><b>Confidentiality:</b>行動を <a href="https://gigaom.com/2015/02/19/dont-let-att-mislead-you-about-its-29-privacy-fee/">盗聴</a> されないため</li>
+            <li><b>Privacy:</b> <a href="http://www.zdnet.com/article/optus-hands-over-customers-numbers-to-websites/">トラッキングクッキー</a> を埋め込まれないため</li>
+            <li><b>Integrity:</b> <a href="http://arstechnica.com/tech-policy/2014/09/why-comcasts-javascript-ad-injections-threaten-security-net-neutrality/">迷惑な広告</a> を埋め込まれないため</li>
+            <li><b>Authenticity:</b> 意図したサイトに確実にアクセスし <a href="https://citizenlab.org/2015/04/chinas-great-cannon/">DDoS に加担しないため</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>...でも全てを暗号化するのは難しい</h2>
+          <ul>
+            <li>発行プロセスがプロバイダごとに違う上に手動</li>
+            <li>まず証明書の発行を依頼し...</li>
+            <li>... 取得したら説明を見ながらインストールする</li>
+            <li>これって自動化できないの?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>あたらしい認証局</h2>
+          <ul>
+            <li>無料である(Free)</li>
+            <li>自動されてる(Automated)</li>
+            <li>透明である(Transparent)</li>
+            <li>開かれている(Open)</li>
+            <li>協同的な(Cooperative)</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2><u>Automated(自動化された)</u> CA</h2>
+            <ul>
+              <li>証明書の発行プロセスの大半は、ドメインの所有確認</li>
+              <li>Let's Encrypt は <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">standard protocol</a> を利用しこれを自動化</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>Automated Certificate Management Environment (ACME)</h2>
+            <ul>
+              <li>だれかが <b>example.com</b> の証明書を要求した場合</li>
+              <li>どうやって <b>example.com</b> の所有者だと確認するか?</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>Domain Validation</h2>
+            <p>ドメインの所有者にしかできないことを要求する:</p>
+            <ul>
+              <li><b>_acme-challenge.example.com</b>に DNS を設定する</li>
+              <li><b>http://example.com/.well-known/acme-challenge/</b><br/> にファイルを設置する</li>
+              <li><b>example.com</b> のサーバで TLS を有効にする</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2>Automated Validation</h2>
+            <ul>
+              <li>手順は <a href="https://tools.ietf.org/html/draft-ietf-acme-acme">ACME specification</a> に定義
+              <ul>
+                <li>どう認可を要求するか</li>
+                <li>どうチャレンジを満たすか</li>
+                <li>どう証明書を要求するか</li>
+              </ul>
+              </li>
+              <li>手順が標準化されているためツール化が可能</li>
+              <li>ACME の目標はサーバに実装し HTTPS 化を自動化すること</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h2><u>Transparent(透明な)</u> CA</h2>
+          <p><a href="https://crt.sh/?Identity=%25&iCAID=7395">全ての証明書</a> は自動で <a href="https://www.certificate-transparency.org/">Certificate Transparency</a> に記録・公開される</p>
+        </section>
+
+        <section>
+          <h2><u>Open(開かれた)</u> CA</h2>
+          <p>Let's Encrypt は全て OSS ベース:</p>
+          <ul>
+            <li><a href="https://github.com/letsencrypt/boulder/">CA サービス</a>も</li>
+            <li><a href="https://github.com/letsencrypt/letsencrypt/">証明書を取得するツール</a>も</li>
+            <li><a href="https://github.com/bifurcation/letsencrypt-overview/">このプレゼン資料</a>も!</li>
+          </ul>
+          <p><br></p>
+          <h2>Pull requests welcome!</h2>
+        </section>
+
+        <section>
+          <h2><u>Cooperative(協同的な)</u> CA</h2>
+          <ul>
+            <li>Let's Encrypt が使う ACME プロトコルは <a href="https://tools.ietf.org/wg/acme/">IETF で標準化中</a> なので全ての CA が使える</li>
+            <li><a href="https://community.letsencrypt.org/">コミュニティベース</a>のユーザサポートの提供</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>まだ始まったばかりなので...</h2>
+          <ul>
+            <li>Let's Encrypt は既存 CA の下位として信用されている</li>
+            <li>ブラウザからの組み込みは依頼中</li>
+            <li>実際の証明書は <a href="https://helloworld.letsencrypt.org/">デモサイト</a> で見られる</li>
+            <li>... もしくは <a href="https://docs.google.com/forms/d/15Ucm4A20y2rf9gySCTXD6yoLG6Tba7AwYgglV7CKHmM/viewform?c=0&w=1">ベータプログラム</a>で試せる</li>
+            <li>2015末には一般提供開始予定</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="./img/verifiedby.png"/>
+        </section>
+
+        <section>
+          <img src="./img/letsencrypt-logo-horizontal.svg" style="border: none; box-shadow: none; width: 50%;"/>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="./reveal/lib/js/head.min.js"></script>
+		<script src="./reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+			});
+
+      document.body.onclick = function() {
+        document.body.mozRequestFullScreen();
+      }
+
+		</script>
+
+	</body>
+</html>
